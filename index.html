@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>BootZard - Bootstrap Wizard Template</title>
+        <title>Heart Risk Prediction - A machine learning model to predict your heart risk</title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -48,18 +48,11 @@
 				<div class="collapse navbar-collapse" id="top-navbar-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<span class="li-text">
-								Put some text or
-							</span>
-							<a href="#"><strong>links</strong></a>
-							<span class="li-text">
-								here, or some icons:
-							</span>
+
 							<span class="li-social">
-								<a href="https://www.facebook.com/pages/Azmindcom/196582707093191" target="_blank"><i class="fa fa-facebook"></i></a>
-								<a href="https://twitter.com/anli_zaimi" target="_blank"><i class="fa fa-twitter"></i></a>
-								<a href="https://plus.google.com/+AnliZaimi_azmind" target="_blank"><i class="fa fa-google-plus"></i></a>
-								<a href="https://github.com/AZMIND" target="_blank"><i class="fa fa-github"></i></a>
+								<a href="https://www.linkedin.com/in/manuel-rios-rivas-bba55073/" target="_blank"><i class="fa fa-linkedin"></i></a>
+								<a href="https://twitter.com/mriosrivas" target="_blank"><i class="fa fa-twitter"></i></a>
+								<a href="https://github.com/mriosrivas" target="_blank"><i class="fa fa-github"></i></a>
 							</span>
 						</li>
 					</ul>
@@ -152,8 +145,8 @@
                         <fieldset>
                           <h4>Are you male or female?</h4>
                           <div class="form-group">
-                            <input type="radio" name="sex"  id="sex" value="female" checked="checked"> Female
-                            <input type="radio" name="sex" id="sex" value="male"> Male
+                            <input type="radio" name="sex" id="sex" value="male" checked="checked"> Male
+                            <input type="radio" name="sex"  id="sex" value="female"> Female
                           </div>
 
                           <div class="f1-buttons">
@@ -164,7 +157,7 @@
 
                         <fieldset>
                           <h4>Select your age category:</h4>
-                          <select name="agecategory" id="agecategory">
+                          <select name="agecategory" id="agecategory" class="text-center">
                             <option value="18-24">18-24</option>
                             <option value="25-29">25-29</option>
                             <option value="30-34">30-34</option>
@@ -189,7 +182,7 @@
 
                         <fieldset>
                           <h4>Which race/ethnicity best describes you?</h4>
-                          <select name="race" id="race">
+                          <select name="race" id="race" class="text-center">
                             <option value="american indian/alaskan native">american indian/alaskan native</option>
                             <option value="asian">asian</option>
                             <option value="black">black</option>
@@ -300,7 +293,7 @@
 
                         <fieldset>
                           <h4>Would you say that in general your health is...</h4>
-                          <select name="genhealth" id="genhealth">
+                          <select name="genhealth" id="genhealth" class="text-center">
                             <option value="excellent">excellent</option>
                             <option value="very good">very good</option>
                             <option value="good">good</option>
@@ -520,8 +513,8 @@
             }
             //alert(JSON.stringify(json));
             try {
-              var result = await fetch('https://ec2-44-203-73-165.compute-1.amazonaws.com:443/predict', {
-              //var result = await fetch('http://localhost:9696/predict', {
+              //var result = await fetch('https://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com:443/predict', {
+              var result = await fetch('http://localhost:9696/predict', {
                 method: 'POST',
                 mode: 'cors',
                 cache: 'no-cache',
