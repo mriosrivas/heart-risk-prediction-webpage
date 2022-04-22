@@ -4,13 +4,9 @@
 
 This is a simple site created with Bootstrap 4 using [this](https://azmind.com/bootstrap-wizard/) template. The purpose of this site is to gather information from an user and then use a machine learning model to predict the risk of a heart disease. 
 
-
-
 The demo page is hosted in Netlify and can be accesed here:
 
-[https://heart-risk.netlify.app/]([Heart Risk Prediction - A machine learning model to predict your heart risk](https://heart-risk.netlify.app/)
-
-
+https://heart-risk.netlify.app/
 
 Disclaimer:
 
