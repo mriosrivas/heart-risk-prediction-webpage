@@ -516,19 +516,20 @@
               //var result = await fetch('https://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com:443/predict', {
               //var result = await fetch('http://localhost:9696/predict', {
               //var result = await fetch('http://localhost:9000/2015-03-31/functions/function/invocations', {
-              var result = await fetch('https://myaqf170ql.execute-api.us-east-1.amazonaws.com/prod/predict', {
+              var result = await fetch('https://c8rcvcb1u9.execute-api.us-east-1.amazonaws.com/prod/predict', {
 
                 method: 'POST',
                 mode: 'cors',
                 cache: 'no-cache',
                 credentials: 'omit',
                 headers: {
+                  'X-API-KEY': '',
                   'Content-Type': 'application/json'
                   // 'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 redirect: 'follow',
                 referrerPolicy: 'no-referrer',
-                //body: JSON.stringify(json)
+                body: JSON.stringify(json)
               });
               if (result.status === 200) {
                 let prediction = await result.json();
