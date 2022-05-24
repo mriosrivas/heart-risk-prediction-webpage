@@ -492,7 +492,7 @@
             var kidneydisease = document.querySelector("#kidneydisease").value;
             var skincancer = document.querySelector("#skincancer").value;
 
-            var json = {
+            var json = {"user" : {
               sex,
               agecategory,
               race,
@@ -510,22 +510,26 @@
               asthma,
               kidneydisease,
               skincancer
-            }
+            }}
             //alert(JSON.stringify(json));
             try {
               //var result = await fetch('https://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com:443/predict', {
-              var result = await fetch('http://localhost:9696/predict', {
+              //var result = await fetch('http://localhost:9696/predict', {
+              //var result = await fetch('http://localhost:9000/2015-03-31/functions/function/invocations', {
+              var result = await fetch('https://myaqf170ql.execute-api.us-east-1.amazonaws.com/prod/predict', {
+
                 method: 'POST',
                 mode: 'cors',
                 cache: 'no-cache',
                 credentials: 'omit',
                 headers: {
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin' : '*'
                   // 'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 redirect: 'follow',
                 referrerPolicy: 'no-referrer',
-                body: JSON.stringify(json)
+                //body: JSON.stringify(json)
               });
               if (result.status === 200) {
                 let prediction = await result.json();
@@ -533,7 +537,7 @@
                 var q_pred = Math.round((100-pred)*100)/100;
                 console.log(pred)
                 console.log(q_pred)
-                //alert(JSON.stringify(prediction));
+                alert(JSON.stringify(prediction));
                 document.querySelector("#danger").innerText = prediction.danger;
                 document.querySelector("#probability").innerText = pred;
 
