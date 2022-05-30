@@ -462,17 +462,28 @@
         <script src="assets/js/jquery.backstretch.min.js"></script>
         <script src="assets/js/retina-1.1.0.min.js"></script>
         <script src="assets/js/scripts.js"></script>
+        <!-- <script type="module" src="index.js"></script> -->
 
         <script type="text/javascript" src="js/popper.min.js"></script>
         <script type="text/javascript" src="js/mdb.min.js"></script>
         <!-- Plugin file -->
         <script src="./js/addons/datatables.min.js"></script>
 
+        <!--
+        <script type="text/javascript">
+            fetch('/.netlify/functions/fetch-api?data="test"')
+                .then(response => {console.log(response.json())})
+        </script>
+      -->
+
         <script type="text/javascript">
 
 
 
           async function apiCall() {
+
+            //require('dotenv').config()
+
             var sex = document.querySelector("#sex").value;
             var agecategory = document.querySelector("#agecategory").value;
             var race = document.querySelector("#race").value;
@@ -512,56 +523,58 @@
               skincancer
             }}
             //alert(JSON.stringify(json));
-            try {
-              //var result = await fetch('https://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com:443/predict', {
-              //var result = await fetch('http://localhost:9696/predict', {
-              //var result = await fetch('http://localhost:9000/2015-03-31/functions/function/invocations', {
-              var result = await fetch('https://c8rcvcb1u9.execute-api.us-east-1.amazonaws.com/prod/predict', {
+            //let result;
+            //let status;
 
-                method: 'POST',
-                mode: 'cors',
-                cache: 'no-cache',
-                credentials: 'omit',
-                headers: {
-                  'X-API-KEY': '',
-                  'Content-Type': 'application/json'
-                  // 'Content-Type': 'application/x-www-form-urlencoded',
+            var result = await fetch(`/.netlify/functions/fetch-api?data=${JSON.stringify(json)}`)
+
+            //await fetch(`/.netlify/functions/fetch-api?data=${JSON.stringify(json)}`)
+              //.then(response => {console.log(response.json())})
+              //.then((res) =>  {result = res.json();
+              //                status = res.status})
+
+               //console.log("*******Result***************")
+               //console.log(result)
+
+
+            if (result.status === 200) {
+              let prediction = await result.json();
+              //let prediction = await JSON.stringify(result);
+
+              console.log("*******Prediction***************")
+              console.log(prediction)
+
+              var pred = Math.round(prediction.probability*10000)/100;
+              var q_pred = Math.round((100-pred)*100)/100;
+              console.log(pred)
+              console.log(q_pred)
+              alert(JSON.stringify(prediction));
+              document.querySelector("#danger").innerText = prediction.danger;
+              document.querySelector("#probability").innerText = pred;
+
+              var ctxP = document.getElementById("pieChart").getContext('2d');
+              var myPieChart = new Chart(ctxP, {
+                type: 'pie',
+                data: {
+                  labels: ["Risk", "No Risk"],
+                  datasets: [{
+                    data: [pred, q_pred],
+                    backgroundColor: ["#F7464A", "#46BFBD"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
+                  }]
                 },
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer',
-                body: JSON.stringify(json)
+                options: {
+                  responsive: true
+                }
               });
-              if (result.status === 200) {
-                let prediction = await result.json();
-                var pred = Math.round(prediction.probability*10000)/100;
-                var q_pred = Math.round((100-pred)*100)/100;
-                console.log(pred)
-                console.log(q_pred)
-                alert(JSON.stringify(prediction));
-                document.querySelector("#danger").innerText = prediction.danger;
-                document.querySelector("#probability").innerText = pred;
+            //}
 
-                var ctxP = document.getElementById("pieChart").getContext('2d');
-                var myPieChart = new Chart(ctxP, {
-                  type: 'pie',
-                  data: {
-                    labels: ["Risk", "No Risk"],
-                    datasets: [{
-                      data: [pred, q_pred],
-                      backgroundColor: ["#F7464A", "#46BFBD"],
-                      hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
-                    }]
-                  },
-                  options: {
-                    responsive: true
-                  }
-                });
-              }
-            } catch (e) {
-              alert(`error: ${e}`)
-            }
+
+
+
             //
           }
+        }
 
           //pie
 

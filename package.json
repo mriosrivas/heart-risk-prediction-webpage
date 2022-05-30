@@ -40,5 +40,18 @@
     "type": "git",
     "url": "git+https://github.com/mdbootstrap/bootstrap-material-design.git"
   },
-  "version": "4.20.0"
+  "version": "4.20.0",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "concurrently": "^7.2.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "http-server": "^14.1.0",
+    "netlify-cli": "^10.3.1",
+    "node-fetch": "^3.2.4",
+    "qs": "^6.10.3"
+  },
+  "scripts": {
+    "dev": "http-server ./ -p 8080"
+  }
 }
