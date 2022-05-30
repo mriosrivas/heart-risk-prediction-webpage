@@ -541,8 +541,8 @@
               let prediction = await result.json();
               //let prediction = await JSON.stringify(result);
 
-              console.log("*******Prediction***************")
-              console.log(prediction)
+              //console.log("*******Prediction***************")
+              //console.log(prediction)
 
               var pred = Math.round(prediction.probability*10000)/100;
               var q_pred = Math.round((100-pred)*100)/100;
