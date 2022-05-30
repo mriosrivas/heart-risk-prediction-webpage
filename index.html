@@ -546,9 +546,9 @@
 
               var pred = Math.round(prediction.probability*10000)/100;
               var q_pred = Math.round((100-pred)*100)/100;
-              console.log(pred)
-              console.log(q_pred)
-              alert(JSON.stringify(prediction));
+              //console.log(pred)
+              //console.log(q_pred)
+              //alert(JSON.stringify(prediction));
               document.querySelector("#danger").innerText = prediction.danger;
               document.querySelector("#probability").innerText = pred;
 
