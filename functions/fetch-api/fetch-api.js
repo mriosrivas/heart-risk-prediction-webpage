@@ -12,7 +12,7 @@ const handler = async function (event) {
     method: 'post',
     url: 'https://c8rcvcb1u9.execute-api.us-east-1.amazonaws.com/prod/predict',
     headers: {
-      'X-API-KEY': ${API_KEY},
+      'X-API-KEY': process.env.API_KEY,
       'Content-Type': 'application/json'
     },
     data : data
